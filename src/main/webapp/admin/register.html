@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Admin Register</title>
+<link rel="stylesheet" href="assets/main.css">
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <div class="wrapper flex-col jc-c ai-c">
+        <form id="admin-registration-form">
+            <div class="header">Admin Registration</div>
+            <div class="input-block">
+                <div class="input-container-floating">
+                    <input type="text" name="firstName" />
+                    <label>First Name</label>
+                </div>
+                <div class="input-container-floating">
+                    <input type="text" name="lastName" />
+                    <label>Last Name</label>
+                </div>
+            </div>
+            <div class="input-block">
+                <div class="input-container-floating">
+                    <input type="email" name="email" />
+                    <label>E-mail</label>
+                </div>
+                <div class="input-container-floating">
+                    <input type="number" name="contact" />
+                    <label>Contact</label>
+                </div>
+            </div>
+            <div class="input-block">
+                <div class="input-container-floating">
+                    <input type="password" name="password" />
+                    <label>Password</label>
+                </div>
+                <div class="input-container-floating">
+                    <input type="password" name="confirmPassword" />
+                    <label>Confirm Password</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <div id="reset-admin-registration-form-btn" class="btn btn-secondary">Reset</div>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+            <div class="footer">Already have an account? <a href="">Login</a></div>
+        </form>
+    </div>
+
+
+    <script>
+        $('#admin-registration-form').on('submit', (e) => {
+            e.preventDefault();
+            let formData = $('#admin-registration-form').serialize();
+            console.log(formData);
+
+            $.ajax({
+                url: 'admin-register',
+                type: 'POST',
+                data: formData,
+                success: (msg) => {
+                },
+                complete: (res) => {
+                    console.log(res.responseText);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
+
+
