@@ -1,0 +1,42 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1641194937057",
+    "Statement": [
+        {
+            "Sid": "GetObject",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::piyush1321/*"
+        },
+        {
+            "Sid": "PutObject",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::piyush1321/*"
+        },
+        {
+            "Sid": "DeleteObject",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:DeleteObject",
+            "Resource": "arn:aws:s3:::piyush1321/*"
+        },
+        {
+            "Sid": "GetObjectAcl",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObjectAcl",
+            "Resource": "arn:aws:s3:::piyush1321/*"
+        }
+    ]
+}

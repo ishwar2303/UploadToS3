@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/main.css">
+    <script src="https://kit.fontawesome.com/196c90f518.js" crossorigin="anonymous"></script>
+
+    <style>
+        .file-uploader-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 5px dotted rgba(0, 0, 255, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            color: rgba(0, 0, 255, 0.7);
+            background: rgba(0, 0, 255, 0.1);
+            height: 250px;
+        }
+        .file-uploader-box i {
+            font-size: 50px;
+        }
+        .file-uploader-box > h3,
+        .file-uploader-box > div {
+            margin: 10px 0px;
+        }
+        #selected-file {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="file-upload-form" method="POST" enctype="multipart/form-data">
+            <div class="header">Upload File to AWS S3</div>
+            <div class="input-block">
+                <div class="input-container-floating">
+                    <input type="text" name="newFileName" required/>
+                    <label>New File Name</label>
+                </div>
+            </div>
+            <div class="input-block">
+                <div id="file-uploader" class="file-uploader-box">
+                    <input style="display: none;" id="file-input" type="file" name="file" required/>
+                    <h3>Upload File</h3>
+                    <div>
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <div id="selected-file"></div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <div id="reset-form" class="btn btn-secondary">Reset</div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+            <div class="footer">File upload via JAVA Web Servlet.</div>
+        </form>
+    </div>
+
+    <script>
+        let fileUploadForm = document.getElementById('file-upload-form');
+        let uploaderBox = document.getElementById('file-uploader');
+        let fileInput = document.getElementById('file-input');
+        uploaderBox.addEventListener('click', () => {
+            fileInput.click();
+        })
+        let res = document.getElementById('selected-file');
+
+        fileInput.addEventListener('change', (e) => {
+            let file = e.target.files[0]
+            let fileName = file.name;
+
+            res.innerText = fileName;
+        })
+        
+        // $('#file-upload-form').on('submit', (e) => {
+        //     console.log('submitted');
+        //     e.preventDefault();
+        //     let formData = new FormData(e.target);
+        //     $.ajax({
+        //         url: 'upload-file',
+        //         type: 'POST',
+        //         data: formData,
+        //         success: (msg) => {
+        //         },
+        //         complete: (res) => {
+        //             console.log(res.responseText);
+        //         }
+        //     });
+        // })
+
+        document.getElementById('reset-form').addEventListener('click', () => {
+            fileUploadForm.reset();
+            res.innerText = 'No File Selected';
+        })
+    </script>
+</body>
+</html>

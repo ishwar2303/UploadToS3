@@ -9,23 +9,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.json.JSONParser;
-import org.apache.tomcat.util.json.ParseException;
 import org.json.simple.JSONObject;
 
 import com.database.DBConDao;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.protobuf.Parser;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
-
+@WebServlet(
+	name = "FetchAdmin",
+	description = "Fetch all admins information from AWS RDS",
+	urlPatterns = {
+			"/admins",
+			"/registered-admins",
+			"/fetch-admins"
+	}
+)
 public class FetchAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -59,7 +61,6 @@ public class FetchAdmin extends HttpServlet {
 		ResultSet rs = st.executeQuery();
 		ArrayList<JSONObject> admins = new ArrayList<JSONObject>();
 //		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//		org.json.simple.parser.JSONParser parser = new org.json.simple.parser.JSONParser();
 		while(rs.next()) {
 //			AdminPojo admin = new AdminPojo();
 //			admin.setFirstName(rs.getString(2));

@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.database.DBConDao;
 
-
+@WebServlet("/admin-register")
 public class RegisterAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,9 +43,13 @@ public class RegisterAdmin extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		String rs = result ? "Inserted" : "Something went wrong";
+		JSONObject json = new JSONObject();
+		String success = result ? "Registration successful" : "";
+		String error = !result ? "Something went wrong" : "";
+		json.put("success", success);
+		json.put("error", error);
 		PrintWriter out = response.getWriter();
-		out.println(rs);
+		out.println(json.toString());
 		
 	}
 

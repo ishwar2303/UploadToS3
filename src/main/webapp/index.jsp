@@ -5,8 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Upload To S3</title>
+<style>
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	a {
+		margin: 20px;
+	}
+</style>
 </head>
 <body>
-	
+	<a href="upload-file" target="_blank">Upload File</a>
+	<a href="view-bucket" target="_blank">View Bucket</a>
+	<div style="height: 100px;"></div>
+	<a href="admins" target="_blank">Fetch Admins</a>
+	<a href="admin-register" target="_blank">Register Admin</a>
 </body>
 </html>

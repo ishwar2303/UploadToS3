@@ -50,6 +50,8 @@
             </div>
             <div class="footer">Already have an account? <a href="">Login</a></div>
         </form>
+
+        <p id="response"></p>
     </div>
 
 
@@ -66,7 +68,15 @@
                 success: (msg) => {
                 },
                 complete: (res) => {
-                    console.log(res.responseText);
+                    let data = JSON.parse(res.responseText);
+                    let responseBlock = document.getElementById('response');
+                    if(data.success) {
+                        responseBlock.innerText = data.success;
+                        document.getElementById('admin-registration-form').reset();
+                    }
+                    else {
+                        responseBlock.innerText = data.error;
+                    }
                 }
             });
         })
