@@ -1,9 +1,10 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.upload.Object" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-	ArrayList<String> objects = (ArrayList<String>) request.getAttribute("objects");
+	ArrayList<Object> objects = (ArrayList<Object>) request.getAttribute("objects");
 	String bucket = (String) request.getAttribute("bucket");
 %>
 
@@ -19,14 +20,18 @@
 <body>
 	<div class="img-wrapper">
 	<%
-		for(String object : objects) {
+		for(Object obj : objects) {
 	%>
 		<div class="img-card">
-			<div class="key"><%= object %></div>
-			<img src="https://<%= bucket %>.s3.ap-south-1.amazonaws.com/<%= object %>" alt="">
-			<a href="delete-object?objectKey=<%= object %>" class="delete">
+			<img src="https://<%= bucket %>.s3.ap-south-1.amazonaws.com/<%= obj.getObjectKey() %>" alt="">
+			<a href="delete-object?objectKey=<%= obj.getObjectKey() %>" class="delete">
 				<i class="fas fa-trash-alt"></i>
 			</a>
+			<a href="https://<%= bucket %>.s3.ap-south-1.amazonaws.com/<%= obj.getObjectKey() %>" class="download">
+				<i class="fas fa-download"></i>
+			</a>
+			<div class="key"><%= obj.getTitle() %></div>
+			<div class="description"><%= obj.getDescription() %></div>
 		</div>
 	<% 
 		}

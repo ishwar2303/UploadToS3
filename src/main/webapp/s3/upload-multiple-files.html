@@ -23,7 +23,7 @@
             box-sizing: border-box;
             color: rgba(0, 0, 255, 0.7);
             background: rgba(0, 0, 255, 0.1);
-            height: 250px;
+            min-height: 250px;
         }
         .file-uploader-box i {
             font-size: 50px;
@@ -43,19 +43,13 @@
             <div class="header">Upload File to AWS S3</div>
             <div class="input-block">
                 <div class="input-container-floating">
-                    <input type="text" name="title"/>
+                    <input type="text" name="newFileName" required/>
                     <label>New File Name</label>
                 </div>
             </div>
             <div class="input-block">
-                <div class="input-container-floating">
-                    <textarea name="description" rows="10"></textarea>
-                    <label>Description</label>
-                </div>
-            </div>
-            <div class="input-block">
                 <div id="file-uploader" class="file-uploader-box">
-                    <input style="display: none;" id="file-input" type="file" name="file" required/>
+                    <input style="display: none;" id="file-input" type="file" name="file" multiple required/>
                     <h3>Upload File</h3>
                     <div>
                         <i class="fas fa-file-upload"></i>
@@ -81,11 +75,15 @@
         let res = document.getElementById('selected-file');
 
         fileInput.addEventListener('change', (e) => {
-            console.log(e.target.files[0]);
-            let file = e.target.files[0];
-            let fileName = file.name;
-            res.innerText = fileName;
+            let files = e.target.files;
+            for(let i=0; i<files.length; i++) {
+                let fileName = files[i].name;
+
+                res.innerHTML = fileName + "<br/>";
+            }
+            
         })
+        
         document.getElementById('reset-form').addEventListener('click', () => {
             fileUploadForm.reset();
             res.innerText = 'No File Selected';
