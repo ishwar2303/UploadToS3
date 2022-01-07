@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Upload To S3</title>
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 	.wrapper {
 		display: flex;
@@ -21,5 +23,6 @@
 	<div style="height: 100px;"></div>
 	<a href="admins" target="_blank">Fetch Admins</a>
 	<a href="admin-register" target="_blank">Register Admin</a>
+	
 </body>
 </html>

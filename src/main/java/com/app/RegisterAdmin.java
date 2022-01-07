@@ -25,6 +25,7 @@ public class RegisterAdmin extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Content-Type", "text/plain");
 		request.getRequestDispatcher("/admin/register.html").forward(request, response);
 	}
 

@@ -48,6 +48,7 @@ public class FetchAdmin extends HttpServlet {
 		json.put("count", count);
 		json.put("data", admins);
 		
+		// accessiblity
 		PrintWriter out = response.getWriter();
 		out.println(json.toString());
 	}
@@ -60,18 +61,7 @@ public class FetchAdmin extends HttpServlet {
 		PreparedStatement st = con.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		ArrayList<JSONObject> admins = new ArrayList<JSONObject>();
-//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		while(rs.next()) {
-//			AdminPojo admin = new AdminPojo();
-//			admin.setFirstName(rs.getString(2));
-//			admin.setLastName(rs.getString(3));
-//			admin.setEmail(rs.getString(4));
-//			admin.setContact(rs.getString(5));
-//			admin.setPassword(rs.getString(6));
-//			String str = gson.toJson(admin);
-//			JSONObject json = (JSONObject) parser.parse(str);
-//			admins.add(json);
-
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 			JSONObject json = new JSONObject(); 
 			for (int j=1; j<=rsmd.getColumnCount(); j++) {
